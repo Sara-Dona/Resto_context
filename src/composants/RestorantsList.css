@@ -1,0 +1,19 @@
+.contanerResto {
+  width: 80%;
+  height: auto;
+  margin: 60px auto;
+  background-color: #353A4B;
+  border-radius: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.restoGrid {
+    display: grid;
+    min-height: 80vh;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 50px 50px;
+}
+

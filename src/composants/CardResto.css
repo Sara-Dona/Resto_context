@@ -1,0 +1,40 @@
+.CardResto {
+    width: 350px;
+    height: auto;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.CardResto:hover {
+    cursor: pointer;
+    box-shadow: 0 0.2rem 0.4rem rgb(11, 10, 10);
+    transition: 0, 3s;
+}
+
+.heart {
+    float: right;
+    margin-right: 10px;
+}
+
+.CardResto img {
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    cursor: auto;
+}
+
+.titleResto {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.descriptionResto {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+a {
+    color: black;
+    text-decoration: none;
+}

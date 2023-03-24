@@ -1,0 +1,46 @@
+.modal {
+    width: 200px;
+    height: auto;
+    background-color: white;
+    position: fixed;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background: white;
+    width: 40%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+h3 {
+    text-align: center;
+}
+.btn-modal {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.close-btn {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    right: 0;
+    height: 35px;
+    align-self: flex-end;
+    color: #bdbdbd;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: lightpink;
+}
