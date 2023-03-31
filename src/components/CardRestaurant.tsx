@@ -12,18 +12,17 @@ type CardRestaurantProps = {
 };
 
 export const CardRestaurant = ({ restaurant }: CardRestaurantProps) => {
-  const { favorites, addToFavorites, removeFromFavorites } = useFavContext();
+  const { addToFavorites, removeFromFavorites, favorites } = useFavContext();
   const [showModal, setShowModal] = useState(false);
   const [restaurantToDelete, setRestaurantToDelete] =
     useState<RestaurantsType | null>(null);
 
   const checkFavorites = (id: number) => {
-    const boolean = favorites.some((restaurant) => restaurant.id === id);
+    const boolean = favorites.some((restaurant) => restaurant === id);
     return boolean;
   };
   const handleDelete = () => {
     if (restaurantToDelete) {
-      //funcion para verificar que restaurantToDelete no es nulo(si es nulo no tiene id). y removeFromFavorites se ejecutara solo si se verifica que no es nulo.
       removeFromFavorites(restaurantToDelete.id);
       setRestaurantToDelete(null);
       setShowModal(false);

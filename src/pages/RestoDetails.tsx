@@ -1,8 +1,10 @@
-import react, { useContext } from "react";
+import { useContext, useState } from "react";
 import { RestaurantsContext } from "../contexts/RestaurantsContext";
 import { useParams } from "react-router-dom";
 import "./RestoDetails.css";
 import { useFavContext } from "../contexts/favContext";
+import { ModalConfirmation } from "../components/Modal";
+import { RestaurantsType } from "../models/Restaurants";
 
 export const RestoDetail = () => {
   const { restaurants } = useContext(RestaurantsContext);
@@ -12,15 +14,24 @@ export const RestoDetail = () => {
     (restaurants) => restaurants.id === Number(id)
   );
 
-  const { favorites, addToFavorites, removeFromFavorites } = useFavContext();
+  const { addToFavorites, removeFromFavorites, favorites } = useFavContext();
+  const [showModal, setShowModal] = useState(false);
+  const [restaurantToDelete, setRestaurantToDelete] =
+    useState<RestaurantsType | null>(null);
+
+  const handleDelete = () => {
+    if (restaurantToDelete) {
+      removeFromFavorites(restaurantToDelete.id);
+      setRestaurantToDelete(null);
+      setShowModal(false);
+    }
+  };
 
   const checkFavorites = (id: string | undefined) => {
     if (!id) {
       return false;
     }
-    const boolean = favorites.some(
-      (restaurant) => restaurant.id === parseInt(id)
-    );
+    const boolean = favorites.some((restaurant) => restaurant === parseInt(id));
     return boolean;
   };
   return (
@@ -30,7 +41,10 @@ export const RestoDetail = () => {
           className="btn-add"
           onClick={() => {
             if (id) {
-              removeFromFavorites(parseInt(id));
+              setRestaurantToDelete(
+                restaurants.find((resto) => resto.id === parseInt(id)) || null
+              );
+              setShowModal(true);
             }
           }}
         >
@@ -61,6 +75,11 @@ export const RestoDetail = () => {
           <div className="description-resto">{restaurant.menu.deserts[1]}</div>
         </div>
       ))}
+      <ModalConfirmation
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        onDelete={handleDelete}
+      />
     </div>
   );
 };

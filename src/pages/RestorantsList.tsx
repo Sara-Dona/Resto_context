@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RestaurantsContext } from "../contexts/RestaurantsContext";
-import { CardRestaurant } from "./CardRestaurant";
-import "../composants/RestorantsList.css";
+import { CardRestaurant } from "../components/CardRestaurant";
+import "./RestorantsList.css";
 import "../App.css";
 
 export const RestorantsList = () => {
@@ -11,9 +11,7 @@ export const RestorantsList = () => {
     <div className="contanerResto">
       <div className="restoGrid">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.id}>
-            <CardRestaurant restaurant={restaurant} />
-          </div>
+          <CardRestaurant key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
     </div>
