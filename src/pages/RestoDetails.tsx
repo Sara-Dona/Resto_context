@@ -19,6 +19,8 @@ export const RestoDetail = () => {
   const [restaurantToDelete, setRestaurantToDelete] =
     useState<RestaurantsType | null>(null);
 
+  if (id == null) return null;
+
   const handleDelete = () => {
     if (restaurantToDelete) {
       removeFromFavorites(restaurantToDelete.id);
@@ -27,25 +29,20 @@ export const RestoDetail = () => {
     }
   };
 
-  const checkFavorites = (id: string | undefined) => {
-    if (!id) {
-      return false;
-    }
-    const boolean = favorites.some((restaurant) => restaurant === parseInt(id));
-    return boolean;
+  const checkFavorites = (id: string) => {
+    return favorites.some((restaurant) => restaurant === parseInt(id));
   };
+
   return (
     <div className="container-details">
       {checkFavorites(id) ? (
         <button
           className="btn-add"
           onClick={() => {
-            if (id) {
-              setRestaurantToDelete(
-                restaurants.find((resto) => resto.id === parseInt(id)) || null
-              );
-              setShowModal(true);
-            }
+            setRestaurantToDelete(
+              restaurants.find((resto) => resto.id === parseInt(id)) || null
+            );
+            setShowModal(true);
           }}
         >
           Remove From Favorites
@@ -63,8 +60,28 @@ export const RestoDetail = () => {
           <h1>{restaurant.name}</h1>
           <div className="details-resto">{restaurant.description_long}</div>
           <h1>Menu </h1>
-          <p>entrées</p>
-          <div className="description-resto">{restaurant.menu.entrees[0]}</div>
+          <p>Entrées</p>
+          {restaurant.menu.entrees.map((entrees) => (
+            <div key={entrees} className="description-resto">
+              {entrees}
+            </div>
+          ))}
+          <p>Plats</p>
+
+          {restaurant.menu.dishes.map((dish) => (
+            <div key={dish} className="description-resto">
+              {dish}
+            </div>
+          ))}
+
+          <p>Desserts</p>
+          {restaurant.menu.deserts.map((desert) => (
+            <div key={desert} className="description-resto">
+              {desert}
+            </div>
+          ))}
+          {/* {restaurant.map((desserts)=>)} */}
+          {/* <div className="description-resto">{restaurant.menu.entrees[0]}</div>
           <div className="description-resto">{restaurant.menu.entrees[1]}</div>
           <p>Plats</p>
           <div className="description-resto">{restaurant.menu.dishes[0]}</div>
@@ -72,7 +89,7 @@ export const RestoDetail = () => {
           <div className="description-resto">{restaurant.menu.dishes[2]}</div>
           <p>Desserts</p>
           <div className="description-resto">{restaurant.menu.deserts[0]}</div>
-          <div className="description-resto">{restaurant.menu.deserts[1]}</div>
+          <div className="description-resto">{restaurant.menu.deserts[1]}</div> */}
         </div>
       ))}
       <ModalConfirmation

@@ -6,7 +6,7 @@ type modalConfirmationProps = {
   handleClose: () => void;
   onDelete: () => void;
 };
-
+ 
 export const ModalConfirmation = ({
   show,
   handleClose,
